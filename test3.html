@@ -1,0 +1,516 @@
+<!DOCTYPE html><html><head>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<style>
+body {background-color:#333;color:#ddd;font-family:sans-serif;margin:0;padding:0;}
+a, a:visited { color:#fff; text-decoration:none;}
+h1, h2{ padding:10px;}
+p { padding:4px 10px;}
+</style></head><body>
+<h1>Sketch Export Workflow</h1>
+<hr>
+  
+<style>
+#svg_defs {display:none;}
+i.airplay, i.airplay svg{width:20px; height:20px;}
+i.album, i.album svg{width:20px;height:20px;}
+i.artist, i.artist svg {width:20px;height:20px;}
+i.chromecast,i.chromecast svg{width:20px;height:17px;}
+i.collapse, i.collapse svg{width:12px;height:8px;}
+i.download, i.download svg{width:20px;height:20px;}
+i.favorite, i.favorite svg{width:20px;height:20px;}
+i.fforward, i.fforward svg{width:20px;height:14px;}
+i.grabber, i.grabber svg{width:20px;height:4px;}
+i.label, i.label svg{width:20px;height:20px;}
+i.more, i.more svg{width:20px;height:4px;}
+i.move_to_top, i.move_to_top svg{width:20px;height:20px;}
+i.pause, i.pause svg{width:20px;height:26px;}
+i.play_later, i.play_later svg{width:20px;height:20px;}
+i.play_now, i.play_now svg{width:20px;height:20px;}
+i.play, i.play svg{width:26px;height:27px;}
+i.playlist, i.playlist svg{width:20px;height:20px;}
+i.add, i.add svg{width:20px;height:20px;}
+i.repeat, i.repeat svg{width:20px;height:14px;}
+i.rewind,i.rewind svg{width:20px;height:14px;}
+i.row_reorder,i.row_reorder svg{width:20px;height:11px;}
+i.share, i.share svg{width:20px;height:20px;}
+i.shuffle, i.shuffle svg{width:18px;height:15px;}
+i.station, i.station svg{width:20px;height:20px;}
+i.switch_off, i.switch_off svg{width:45px;height:26px;}
+i.switch_on , i.switch_on svg{width:45px;height:26px;}
+i.thumbs_down_off,i.thumbs_down_off svg{width:20px;height:20px;}
+i.thumbs_down_on, i.thumbs_down_on svg{width:20px;height:20px;}
+i.thumbs_up_off, i.thumbs_up_off svg{width:20px;height:20px;}
+i.thumbs_up_on, i.thumbs_up_on svg{ width:20px;height:20px;}-
+
+.legend2  i.airplay, i.airplay svg { width:40px; height:40px; }
+.legend2  i.album, i.album svg { width:40px;height:40px;}
+.legend2  i.artist, i.artist svg  { width:40px;height:40px;}
+.legend2  i.chromecast,i.chromecast svg { width:40px;height:34px;}
+.legend2  i.collapse, i.collapse svg { width:24px;height:16px;}
+.legend2  i.download, i.download svg { width:40px;height:40px;}
+.legend2  i.favorite, i.favorite svg { width:40px;height:40px;}
+.legend2  i.fforward, i.fforward svg { width:40px;height:28px;}
+.legend2  i.grabber, i.grabber svg { width:40px;height:8px;}
+.legend2  i.label, i.label svg { width:40px;height:40px;}
+.legend2  i.more, i.more svg { width:40px;height:8px;}
+.legend2  i.move_to_top, i.move_to_top svg { width:40px;height:40px;}
+.legend2  i.pause, i.pause svg { width:40px;height:52px;}
+.legend2  i.play_later, i.play_later svg { width:40px;height:40px;}
+.legend2  i.play_now, i.play_now svg { width:40px;height:40px;}
+.legend2  i.play, i.play svg { width:52px;height:54px;}
+.legend2  i.playlist, i.playlist svg { width:40px;height:40px;}
+.legend2  i.add, i.add svg { width:40px;height:40px;}
+.legend2  i.repeat, i.repeat svg { width:40px;height:28px;}
+.legend2  i.rewind,i.rewind svg { width:40px;height:28px;}
+.legend2  i.row_reorder,i.row_reorder svg { width:40px;height:22px;}
+.legend2  i.share, i.share  svg{ width:40px;height:40px;}
+.legend2  i.shuffle, i.shuffle svg { width:36px;height:30px;}
+.legend2  i.station, i.station svg { width:40px;height:40px;}
+.legend2  i.switch_off, i.switch_off svg { width:90px;height:52px;}
+.legend2  i.switch_on , i.switch_on svg { width:90px;height:52px;}
+.legend2  i.thumbs_down_off,i.thumbs_down_off svg { width:40px;height:40px;}
+.legend2  i.thumbs_down_on, i.thumbs_down_on svg { width:40px;height:40px;}
+.legend2  i.thumbs_up_off, i.thumbs_up_off svg { width:40px;height:40px;}
+.legend2  i.thumbs_up_on, i.thumbs_up_on svg { width:40px;height:40px;}
+
+
+.legend i {
+  display: inline-block;
+  background-color: #666;
+  text-align:center;
+  overflow: hidden;
+  position: relative;
+  vertical-align:middle;
+}
+.legend i a {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.legend i a svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>  
+<div id="svg_defs">
+
+<svg id="svg_airplay" viewBox="0 0 20 15">
+  <path d="M15.657 12.39l-1.414-1.955H18V1.957H2v8.478h3.757L4.343 12.39H0V0h20v12.39h-4.343zM10 7.828L15.322 15H4.678L10 7.826z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_album" viewBox="0 0 20 20">
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 12c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zm0-5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm0 3c-.552 0-1-.448-1-1s.448-1 1-1 1 .448 1 1-.448 1-1 1z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_artist" viewBox="0 0 20 20">
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm2.828 7.886l-2.12-2.12c.05-.464.276-.977.634-1.34.815-.83 2.11-.867 2.89-.087.782.78.755 2.083-.06 2.91-.358.365-.884.58-1.344.636zm-2.328 2.16V15.5h-1v-3.588l-3.036 2.63L5.05 13.13l4.597-5.305 2.12 2.122-1.267 1.1z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_chromecast" viewBox="0 0 20 17">
+  <g fill="#FFF" fill-rule="evenodd"><path d="M8.074 16.472h-1.73C5.888 13.017 3.29 10.288 0 9.807V8c4.236.497 7.596 4.024 8.074 8.472zm-3.013 0H3.325C2.937 14.744 1.644 13.386 0 12.98v-1.814c2.586.455 4.624 2.592 5.06 5.306zm-3.074 0H0v-2.086c.93.335 1.667 1.108 1.986 2.086z"/><path d="M9.383 14.83c-.11-.567-.265-1.117-.453-1.65h9.325V1.65L2.568 1.64V6.5C2.063 6.304 1.54 6.143 1 6.026V0h18.823v14.83H9.383"/></g>
+</svg>
+<svg id="svg_collapse" viewBox="0 0 12 8">
+  <path d="M6.007 7.61L0 1.6 1.602 0l4.405 4.405L10.412 0l1.602 1.602L6.007 7.61z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_download" viewBox="0 0 20 20">
+  <path d="M20 10c0 5.523-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0s10 4.477 10 10zm-1 0c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9zm-5.5 1L10 15l-3.5-4h3V5h1v6h3z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_favorite" viewBox="0 0 20 20" >
+  <path d="M9.756 19.512C4.368 19.512 0 15.144 0 9.756S4.368 0 9.756 0s9.756 4.368 9.756 9.756-4.368 9.756-9.756 9.756zm0-18.536c-4.85 0-8.78 3.93-8.78 8.78s3.93 8.78 8.78 8.78 8.78-3.93 8.78-8.78-3.93-8.78-8.78-8.78zm.037 13.175S2.05 9.728 6.01 6.64c2.268-.99 3.75.78 3.75.78s1.47-1.77 3.74-.78c3.957 3.087-3.707 7.51-3.707 7.51z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_fforward" viewBox="0 0 20 14" >
+  <path d="M19 7.58L7.945 13.998v-4.26L0 13.998V.002l7.946 4.26V.002L19 6.42V0h1v14h-1V7.58z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_grabber" viewBox="0 0 20 4" > 
+  <rect y="280" width="20" height="4" rx="5" transform="translate(0 -280)" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_label" viewBox="0 0 20 20" >
+  <path d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10zm0-1c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zm1-9.5v.5H9v-.5H5V9h10v.5h-4zM5 7.503C5 7.225 5.228 7 5.51 7h8.98c.282 0 .51.233.51.503v5.994c0 .278-.228.503-.51.503H5.51c-.282 0-.51-.233-.51-.503V7.503zM8 6c0-.552.443-1 1.01-1h1.98C11.55 5 12 5.444 12 6v1H8V6zm1 .5c0-.276.214-.5.505-.5h.99c.28 0 .505.232.505.5V7H9v-.5z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_more" viewBox="0 0 20 4" >
+  <path d="M18 4c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm-8 0c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zM2 4C.895 4 0 3.105 0 2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_move_to_top" viewBox="0 0 20 20" >
+  
+  <g fill="none" fill-rule="evenodd">
+    <circle stroke="#FFF" cx="10" cy="10" r="10"/>
+    <g fill="#FFF">
+      <path d="M10.055 8.56L6.45 12.976l7.058.02-3.432-4.435h-.02z"/>
+      <path d="M10.06 8.583H6.3V7.45h7.362v1.133h-3.58"/>
+    </g>
+  </g>
+
+</svg>
+<svg id="svg_pause" viewBox="0 0 20 26" >
+  <path d="M13 0h7v26h-7V0zM0 0h7v26H0V0z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_play_later" viewBox="0 0 20 20" >
+  <path d="M19.012 9.664c-.052-1.393-.414-2.705-1.03-3.866l.985-.264c.59 1.176.952 2.482 1.035 3.865l-.99.264zm-5.173-7.8l.63-.807c1.215.605 2.29 1.443 3.163 2.463l-.63.802c-.85-1.04-1.933-1.88-3.164-2.46zM7.994 1.23V.2C8.643.07 9.315 0 10 0c.688 0 1.36.07 2.007.2v1.03C11.36 1.085 10.69 1 10 1c-.69 0-1.36.084-2.005.23zM2.958 2.885C3.916 1.94 5.066 1.196 6.34.697l.568.857c-1.29.47-2.446 1.22-3.384 2.184l-.566-.854zm3.205 15.253l-.632.806c-1.213-.605-2.288-1.443-3.16-2.463l.63-.802c.85 1.04 1.932 1.88 3.163 2.46zM.063 8.71C.238 7.347.69 6.073 1.36 4.94l.962.345c-.694 1.12-1.155 2.396-1.3 3.77l-.96-.345zm1.957 5.492l-.985.264C.445 13.29.083 11.984 0 10.6l.99-.264c.052 1.393.414 2.705 1.03 3.866zm9.987 4.567v1.03c-.648.13-1.32.2-2.006.2-.686 0-1.357-.07-2.005-.2v-1.03C8.64 18.915 9.31 19 10 19c.69 0 1.36-.084 2.007-.23zM7.995 6.5l6.018 3.5-6.018 3.5v-7zm9.152 10.514c-.945.956-2.082 1.722-3.348 2.24l-.57-.858c1.284-.49 2.423-1.262 3.347-2.243l.57.86zm2.746-5.42c-.218 1.353-.705 2.615-1.41 3.73l-.963-.346c.733-1.097 1.222-2.365 1.412-3.73l.96.345z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_play_now" viewBox="0 0 20 20" >
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zM8.195 6.664l6.168 3.586-6.168 3.586V6.664z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_play" viewBox="0 0 26 27" >
+  <path d="M25.71 13.36L0 0v26.722l25.71-13.36" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_playlist" viewBox="0 0 20 20" >
+  <path d="M10 20C4.477 20 0 15.52 0 10 0 4.475 4.477 0 10 0s10 4.476 10 10c0 5.522-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm2 14.5c-1.38 0-2.5-.896-2.5-2 0-1.105 1.12-2 2.5-2 .565 0 1.08.155 1.5.408v-4.91h1v7h-.088c-.28.862-1.248 1.5-2.412 1.5zM5.5 9h6v1h-6V9zm0-3h6v1h-6V6zm0 6h3v1h-3v-1z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_add" viewBox="0 0 20 20" >
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-.5 13v-3.5H6v-1h3.5V6h1v3.5H14v1h-3.5V14h-1z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_repeat" viewBox="0 0 20 14" >
+  <path d="M17 7c0 3.866-3.134 7-7 7-1.97 0-3.745-.816-5.017-2.124l.993-1.135C6.98 11.82 8.41 12.5 10 12.5c3.038 0 5.5-2.462 5.5-5.5H13l3.5-4L20 7h-3zM7 7H4.5c0-3.038 2.462-5.5 5.5-5.5 1.608 0 3.05.694 4.055 1.794l.993-1.135C13.775.83 11.986 0 10 0 6.134 0 3 3.134 3 7H0l3.5 4L7 7z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_rewind" viewBox="0 0 20 14" >
+  <path d="M12.053 9.738v4.26L1 7.58V14H0V0h1v6.42L12.053.002v4.26L20 .002v13.996l-7.947-4.26z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_row_reorder" viewBox="0 0 20 11" >
+  <path d="M0 0h20v1H0V0zm0 5h20v1H0V5zm0 5h20v1H0v-1z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_share" viewBox="0 0 20 20" >
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zM6.5 8h2v1h-1v4.5h5V9h-1V8h2v6.5h-7V8zm4 3h-1V6.5h-2l2.5-3 2.5 3h-2V11z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_shuffle" viewBox="0 0 18 15" >
+  <path d="M14.914 3.925h-.418c-.93 0-1.65.693-2.118 1.153l-6.29 6.07c-.565.537-1.605 1.543-3.118 1.543H0v-1.348h2.97c.933 0 1.65-.688 2.125-1.15l6.293-6.07c.557-.54 1.604-1.545 3.108-1.545h.418V0L18 3.215l-3.086 3.213V3.925zm-9.82.95c-.474-.46-1.19-1.152-2.124-1.152H0v-1.35h2.97c1.513 0 2.553 1.007 3.117 1.548L8.24 6.003l-.987.955-2.158-2.082zM12.38 9.99c.47.46 1.19 1.148 2.118 1.148h.418V8.572L18 11.786 14.914 15v-2.512h-.418c-1.505 0-2.55-1.005-3.108-1.543L9.228 8.86l.987-.95 2.163 2.08z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_station" viewBox="0 0 20 20" >
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-19c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm2.038 13H11.5v-.85c1.18-.563 2-1.756 2-3.15 0-1.933-1.567-3.5-3.5-3.5S6.5 8.067 6.5 10c0 1.394.82 2.587 2 3.15V14h-.538c-1.46-.744-2.462-2.25-2.462-4 0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5c0 1.75-1.003 3.256-2.462 4zM10 8c1.105 0 2 .895 2 2 0 .93-.64 1.706-1.5 1.93v2.57h-1v-2.57c-.86-.224-1.5-1-1.5-1.93 0-1.105.895-2 2-2zm0 3c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_switch_off" viewBox="0 0 45 26" >
+  <g fill="none" fill-rule="evenodd"><rect stroke="#FFF" opacity=".2" width="45" height="26" rx="39"/>
+    <circle fill="#FFF" cx="13" cy="13" r="10"/><path d="M34.206 16.007l-2.202-2.202-2.203 2.202-.8-.8 2.203-2.203L29 10.8l.8-.8 2.204 2.203L34.206 10l.8.8-2.2 2.204 2.2 2.202-.8.8z" fill="#FFF"/>
+  </g>
+</svg>
+<svg id="svg_switch_on" viewBox="0 0 45 26" >
+  <g fill="none" fill-rule="evenodd"><rect stroke="#FFF" opacity=".2" width="45" height="26" rx="39"/>
+    <circle fill="#FFF" cx="32" cy="13" r="10"/><path d="M8 14.135v-1.467l3.077 1.467L18 9v1.1l-6.93 6.895L8 14.135z" fill="#FFF"/>
+  </g>
+</svg>
+<svg id="svg_thumbs_down_off" viewBox="0 0 20 20" >
+  <path d="M0 10C0 4.477 4.477 0 10 0s10 4.477 10 10-4.477 10-10 10S0 15.523 0 10zm10-9c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm5.25 10h-2c-.138 0-.25-.112-.25-.25v-4c0-.138.112-.25.25-.25h2c.138 0 .25.112.25.25v4c0 .138-.112.25-.25.25zm-4.295.41c-.277.602-.304.682-.856 1.15-.554.467-1.07.9-1.735 1.674-.65.756-.598 1.258-.848 1.266-.184 0-.298-.16-.298-.16-.313-.368-.246-1.01-.104-1.406.14-.396.417-.67.536-.88.494-.87.083-1.224.083-1.224-.19-.008-.51-.084-.795-.14-.286-.056-.722.043-.93.086-.206.043-.412-.054-.412-.054s-.496-.158-.547-.59c-.05-.432.425-.72.425-.72s-.173-.034-.207-.536c-.034-.503.258-.805.258-.805-.368-.927.382-1.266.382-1.266s.003-.104.072-.45c.07-.348.275-.61.496-.688.22-.08 1.355-.166 1.89-.14.532.026 1.36.275 1.588.312.23.036.754.032.754.032s1.632-.083 1.723-.086l.07.053v3.814c-.38.044-.688.085-.688.085s-.58.075-.857.676z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_thumbs_down_on" viewBox="0 0 20 20" >
+  <path d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm5.25-9h-2c-.138 0-.25-.112-.25-.25v-4c0-.138.112-.25.25-.25h2c.138 0 .25.112.25.25v4c0 .138-.112.25-.25.25zm-4.295.41c-.277.602-.304.682-.856 1.15-.554.467-1.07.9-1.735 1.674-.65.756-.598 1.258-.848 1.266-.184 0-.298-.16-.298-.16-.313-.368-.246-1.01-.104-1.406.14-.396.417-.67.536-.88.494-.87.083-1.224.083-1.224-.19-.008-.51-.084-.795-.14-.286-.056-.722.043-.93.086-.206.043-.412-.054-.412-.054s-.496-.158-.547-.59c-.05-.432.425-.72.425-.72s-.173-.034-.207-.536c-.034-.503.258-.805.258-.805-.368-.927.382-1.266.382-1.266s.003-.104.072-.45c.07-.348.275-.61.496-.688.22-.08 1.355-.166 1.89-.14.532.026 1.36.275 1.588.312.23.036.754.032.754.032s1.632-.083 1.723-.086l.07.053v3.814c-.38.044-.688.085-.688.085s-.58.075-.857.676z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_thumbs_up_off" viewBox="0 0 20 20" >
+  <path d="M10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0zm0 19c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9zM4.75 9h2c.138 0 .25.112.25.25v4c0 .138-.112.25-.25.25h-2c-.138 0-.25-.112-.25-.25v-4c0-.138.112-.25.25-.25zm4.295-.41c.277-.602.304-.682.856-1.15.554-.467 1.07-.9 1.735-1.674.65-.756.598-1.258.848-1.266.184 0 .298.16.298.16.313.368.246 1.01.104 1.406-.14.396-.417.67-.536.88-.494.87-.083 1.224-.083 1.224.19.008.51.084.795.14.286.056.722-.043.93-.086.206-.043.412.054.412.054s.496.158.547.59c.05.432-.425.72-.425.72s.173.034.207.536c.034.503-.258.805-.258.805.368.927-.382 1.266-.382 1.266s-.003.104-.072.45c-.07.348-.275.61-.496.688-.22.08-1.355.166-1.89.14-.532-.026-1.36-.275-1.588-.312-.23-.036-.754-.032-.754-.032s-1.632.083-1.723.086l-.07-.053V9.35c.38-.044.688-.085.688-.085s.58-.075.857-.676z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+<svg id="svg_thumbs_up_on" viewBox="0 0 20 20" >
+  <path d="M10 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S0 15.523 0 10 4.477 0 10 0zM4.75 9h2c.138 0 .25.112.25.25v4c0 .138-.112.25-.25.25h-2c-.138 0-.25-.112-.25-.25v-4c0-.138.112-.25.25-.25zm4.295-.41c.277-.602.304-.682.856-1.15.554-.467 1.07-.9 1.735-1.674.65-.756.598-1.258.848-1.266.184 0 .298.16.298.16.313.368.246 1.01.104 1.406-.14.396-.417.67-.536.88-.494.87-.083 1.224-.083 1.224.19.008.51.084.795.14.286.056.722-.043.93-.086.206-.043.412.054.412.054s.496.158.547.59c.05.432-.425.72-.425.72s.173.034.207.536c.034.503-.258.805-.258.805.368.927-.382 1.266-.382 1.266s-.003.104-.072.45c-.07.348-.275.61-.496.688-.22.08-1.355.166-1.89.14-.532-.026-1.36-.275-1.588-.312-.23-.036-.754-.032-.754-.032s-1.632.083-1.723.086l-.07-.053V9.35c.38-.044.688-.085.688-.085s.58-.075.857-.676z" fill="#FFF" fill-rule="evenodd"/>
+</svg>
+</div>
+  
+<h2>Exported from Sketch, manipulated by hand</h2>
+<div class="legend">
+  <i class="airplay">
+    <a href="#">
+      <svg><use xlink:href="#svg_airplay" /></svg>
+    </a>
+  </i>
+  <i class="album">
+    <a href="#">
+      <svg><use xlink:href="#svg_album" /></svg>
+    </a>
+  </i>
+  <i class="artist">
+    <a href="#">
+      <svg><use xlink:href="#svg_artist" /></svg>
+    </a>
+  </i>
+  <i class="chromecast">
+    <a href="#">
+      <svg><use xlink:href="#svg_chromecast" /></svg>
+    </a>
+  </i>
+  <i class="collapse">
+    <a href="#">
+      <svg><use xlink:href="#svg_collapse" /></svg>
+    </a>
+  </i>
+  <i class="download">
+    <a href="#">
+      <svg><use xlink:href="#svg_download" /></svg>
+    </a>
+  </i>
+  <i class="favorite">
+    <a href="#">
+      <svg><use xlink:href="#svg_favorite" /></svg>
+    </a>
+  </i>
+  <i class="fforward">
+    <a href="#">
+      <svg><use xlink:href="#svg_fforward" /></svg>
+    </a>
+  </i>
+  <i class="grabber">
+    <a href="#">
+      <svg><use xlink:href="#svg_grabber" /></svg>
+    </a>
+  </i>
+  <i class="label">
+    <a href="#">
+      <svg><use xlink:href="#svg_label" /></svg>
+    </a>
+  </i>
+  <i class="more">
+    <a href="#">
+      <svg><use xlink:href="#svg_more" /></svg>
+    </a>
+  </i>
+  <i class="move_to_top">
+    <a href="#">
+      <svg><use xlink:href="#svg_move_to_top" /></svg>
+    </a>
+  </i>
+  <i class="pause">
+    <a href="#">
+      <svg><use xlink:href="#svg_pause" /></svg>
+    </a>
+  </i>
+  <i class="play_later">
+    <a href="#">
+      <svg><use xlink:href="#svg_play_later" /></svg>
+    </a>
+  </i>
+  <i class="play_now">
+    <a href="#">
+      <svg><use xlink:href="#svg_play_now" /></svg>
+    </a>
+  </i>
+  <i class="play">
+    <a href="#">
+      <svg><use xlink:href="#svg_play" /></svg>
+    </a>
+  </i>
+  <i class="playlist">
+    <a href="#">
+      <svg><use xlink:href="#svg_playlist" /></svg>
+    </a>
+  </i>
+  <i class="add">
+    <a href="#">
+      <svg><use xlink:href="#svg_add" /></svg>
+    </a>
+  </i>
+  <i class="repeat">
+    <a href="#">
+      <svg><use xlink:href="#svg_repeat" /></svg>
+    </a>
+  </i>
+  <i class="rewind">
+    <a href="#"><svg><use xlink:href="#svg_rewind" /></svg>
+    </a>
+  </i>
+  <i class="row_reorder">
+    <a href="#">
+      <svg><use xlink:href="#svg_row_reorder" /></svg>
+    </a>
+  </i>
+  <i class="share">
+    <a href="#">
+      <svg><use xlink:href="#svg_share" /></svg>
+    </a>
+  </i>
+  <i class="shuffle">
+    <a href="#">
+      <svg><use xlink:href="#svg_shuffle" /></svg>
+    </a>
+  </i>
+  <i class="station">
+    <a href="#">
+      <svg><use xlink:href="#svg_station" /></svg>
+    </a>
+  </i>
+  <i class="switch_off">
+    <a href="#">
+      <svg><use xlink:href="#svg_switch_off" /></svg>
+    </a>
+  </i>
+  <i class="switch_on">
+    <a href="#">
+      <svg><use xlink:href="#svg_switch_on" /></svg>
+    </a>
+  </i>
+  <i class="thumbs_down_off">
+    <a href="#">
+      <svg><use xlink:href="#svg_thumbs_down_off" /></svg>
+  </a></i>
+  <i class="thumbs_down_on">
+    <a href="#">
+      <svg><use xlink:href="#svg_thumbs_down_on" /></svg>
+    </a>
+  </i>
+  <i class="thumbs_up_off">
+    <a href="#">
+      <svg><use xlink:href="#svg_thumbs_up_off" /></svg>
+    </a>
+  </i>
+  <i class="thumbs_up_on">
+    <a href="#">
+      <svg><use xlink:href="#svg_thumbs_up_on" /></svg>
+    </a>
+  </i>
+</div>
+
+
+<h2>Scaled by hand</h2>
+<div class="legend2">
+<i class="airplay">
+  <a href="#">
+    <svg><use xlink:href="#svg_airplay" /></svg>
+  </a>
+</i>
+<i class="album">
+  <a href="#">
+    <svg><use xlink:href="#svg_album" /></svg>
+  </a>
+</i>
+<i class="artist">
+  <a href="#">
+    <svg><use xlink:href="#svg_artist" /></svg>
+  </a>
+</i>
+<i class="chromecast">
+  <a href="#">
+    <svg><use xlink:href="#svg_chromecast" /></svg>
+  </a>
+</i>
+<i class="collapse">
+  <a href="#">
+    <svg><use xlink:href="#svg_collapse" /></svg>
+  </a>
+</i>
+<i class="download">
+  <a href="#">
+    <svg><use xlink:href="#svg_download" /></svg>
+  </a>
+</i>
+<i class="favorite">
+  <a href="#">
+    <svg><use xlink:href="#svg_favorite" /></svg>
+  </a>
+</i>
+<i class="fforward">
+  <a href="#">
+    <svg><use xlink:href="#svg_fforward" /></svg>
+  </a>
+</i>
+<i class="grabber">
+  <a href="#">
+    <svg><use xlink:href="#svg_grabber" /></svg>
+  </a>
+</i>
+<i class="label">
+  <a href="#">
+    <svg><use xlink:href="#svg_label" /></svg>
+  </a>
+</i>
+<i class="more">
+  <a href="#">
+    <svg><use xlink:href="#svg_more" /></svg>
+  </a>
+</i>
+<i class="move_to_top">
+  <a href="#">
+    <svg><use xlink:href="#svg_move_to_top" /></svg>
+  </a>
+</i>
+<i class="pause">
+  <a href="#">
+    <svg><use xlink:href="#svg_pause" /></svg>
+  </a>
+</i>
+<i class="play_later">
+  <a href="#">
+    <svg><use xlink:href="#svg_play_later" /></svg>
+  </a>
+</i>
+<i class="play_now">
+  <a href="#">
+    <svg><use xlink:href="#svg_play_now" /></svg>
+  </a>
+</i>
+<i class="play">
+  <a href="#">
+    <svg><use xlink:href="#svg_play" /></svg>
+  </a>
+</i>
+<i class="playlist">
+  <a href="#">
+    <svg><use xlink:href="#svg_playlist" /></svg>
+  </a>
+</i>
+<i class="add">
+  <a href="#">
+    <svg><use xlink:href="#svg_add" /></svg>
+  </a>
+</i>
+<i class="repeat">
+  <a href="#">
+    <svg><use xlink:href="#svg_repeat" /></svg>
+  </a>
+</i>
+<i class="rewind">
+  <a href="#"><svg><use xlink:href="#svg_rewind" /></svg>
+  </a>
+</i>
+<i class="row_reorder">
+  <a href="#">
+    <svg><use xlink:href="#svg_row_reorder" /></svg>
+  </a>
+</i>
+<i class="share">
+  <a href="#">
+    <svg><use xlink:href="#svg_share" /></svg>
+  </a>
+</i>
+<i class="shuffle">
+  <a href="#">
+    <svg><use xlink:href="#svg_shuffle" /></svg>
+  </a>
+</i>
+<i class="station">
+  <a href="#">
+    <svg><use xlink:href="#svg_station" /></svg>
+  </a>
+</i>
+<i class="switch_off">
+  <a href="#">
+    <svg><use xlink:href="#svg_switch_off" /></svg>
+  </a>
+</i>
+<i class="switch_on">
+  <a href="#">
+    <svg><use xlink:href="#svg_switch_on" /></svg>
+  </a>
+</i>
+<i class="thumbs_down_off">
+  <a href="#">
+    <svg><use xlink:href="#svg_thumbs_down_off" /></svg>
+</a></i>
+<i class="thumbs_down_on">
+  <a href="#">
+    <svg><use xlink:href="#svg_thumbs_down_on" /></svg>
+  </a>
+</i>
+<i class="thumbs_up_off">
+  <a href="#">
+    <svg><use xlink:href="#svg_thumbs_up_off" /></svg>
+  </a>
+</i>
+<i class="thumbs_up_on">
+  <a href="#">
+    <svg><use xlink:href="#svg_thumbs_up_on" /></svg>
+  </a>
+</i>
+</div>
+<p>Notes:<br>
+- This approach uses a pre-defined scale (1x) and multiplies each icons dimensions up by hand manually.
+- Several icons did not export in an ideal manner, included transforms and filters.<br>
+- Circles still need to be separated from primary compound paths.  
+</p> 
+
+</body></html>
